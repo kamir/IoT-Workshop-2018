@@ -8,11 +8,13 @@ integration of an BI tool using th Impala JDBC connectore.
 
 # Short Version: less than 2 hours 
 
-## Step 1 : Prepre a Kapua Instance
+## Step 1 : Prepre a Kapua Instance (in Docker)
 You need Docker on your computer to continue.
 
 If Docker is not installed, please search for the right setup guide:
 https://www.google.de/search?q=setup+docker&oq=setup+docker+&aqs=chrome..69i57j0l5.6639j1j7&sourceid=chrome&ie=UTF-8
+
+
 
 Starting Kapua requires 5 steps: 
 https://www.eclipse.org/kapua/getting-started.php
@@ -29,15 +31,30 @@ docker run -td --name kapua-console --link kapua-sql:db --link kapua-broker:brok
 docker run -td --name kapua-api --link kapua-sql:db --link kapua-broker:broker --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 8081:8080 kapua/kapua-api:0.3.2
 ```
 
-## Step 2 : Prepare a CDH Cluster (using Cloud-Cat)
+## Step 2 : Prepare a Kura Instance (in Docker)
+The dockerized Kura setup is available here: https://github.com/ctron/kura-emulator
+
+```
+docker run -ti -p 8080:8080 ctron/kura-emulator
+```
+
+## Step 3 : Prepare a CDH Cluster (using Cloud-Cat)
 
 
 
-## Step 3 : Setup the "northbound data flow"
-### 3.1 Configure "CloudService" in Kura 
+## Step 4 : Setup the "northbound data flow"
+### 4.1 Configure "CloudService" in Kura 
 
-### 3.2 Configure Kapua-Kafka-Bridge
+### 4.2 Configure Kapua-Kafka-Bridge
 
-### 3.3 Create data ingestion pipeline to CDH
+### 4.3 Create data ingestion pipeline to CDH
+
+## Step 5 : Simulate a Sensor on Kura
+
+```
+
+ 
+``` 
+
 
 
