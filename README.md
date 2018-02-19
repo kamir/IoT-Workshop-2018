@@ -31,6 +31,8 @@ docker run -td --name kapua-console --link kapua-sql:db --link kapua-broker:brok
 docker run -td --name kapua-api --link kapua-sql:db --link kapua-broker:broker --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 8081:8080 kapua/kapua-api:0.3.2
 ```
 
+Access the Kapua Web-UI: 127.0.0.1:8081
+
 ## Step 2 : Prepare a Kura Instance (in Docker)
 The dockerized Kura setup is available here: https://github.com/ctron/kura-emulator
 
@@ -38,9 +40,9 @@ The dockerized Kura setup is available here: https://github.com/ctron/kura-emula
 docker run -ti -p 8080:8080 ctron/kura-emulator
 ```
 
+Access the Kura Web-UI: 127.0.0.1:8080
+
 ## Step 3 : Prepare a CDH Cluster (using Cloud-Cat)
-
-
 
 ## Step 4 : Setup the "northbound data flow"
 ### 4.1 Configure "CloudService" in Kura 
