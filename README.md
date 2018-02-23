@@ -86,7 +86,7 @@ Access the Kura Web-UI: http://YOUR_KURA_HOST:8083
 
 ### 3.3 Create data ingestion pipeline to CDH
 
-## Step 4 : Simulate a Sensor on Kura
+## Step 4 : Connect or Simulate a Sensor on Kura
 
 ```
 
