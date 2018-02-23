@@ -44,8 +44,6 @@ systemctl start docker
 If using a non-CloudCat environment where Docker is not installed, please search for the applicable setup guide:
 https://www.google.de/search?q=setup+docker&oq=setup+docker+&aqs=chrome..69i57j0l5.6639j1j7&sourceid=chrome&ie=UTF-8
 
-
-
 Starting Kapua requires 5 steps: 
 https://www.eclipse.org/kapua/getting-started.php
 
@@ -61,16 +59,25 @@ docker run -td --name kapua-console --link kapua-sql:db --link kapua-broker:brok
 docker run -td --name kapua-api --link kapua-sql:db --link kapua-broker:broker --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 8081:8080 kapua/kapua-api:0.3.2
 ```
 
-Access the Kapua Web-UI: http://127.0.0.1:8082
+Access the Kapua Web-UI: http://YOUR_KAPUA_HOST:8082
+
+Check the docker containers:
+
+```
+docker ps
+```
 
 ## Step 2 : Prepare a Kura Instance (in Docker)
 The dockerized Kura setup is available here: https://github.com/ctron/kura-emulator
+
+Please repeat the docker installation on a different host and run the KURA docker container in this host.
+Both, Kura and Kapua have MQTT brokers using the port 1883, thus we us two different host to avoid collisions and confusion.
 
 ```
 docker run -ti -p 8083:8080 ctron/kura-emulator
 ```
 
-Access the Kura Web-UI: http://127.0.0.1:8083
+Access the Kura Web-UI: http://YOUR_KURA_HOST:8083
 
 ## Step 3 : Setup the "northbound data flow"
 ### 3.1 Configure "CloudService" in Kura 
