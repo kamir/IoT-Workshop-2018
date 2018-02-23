@@ -72,16 +72,14 @@ docker run -ti -p 8080:8080 ctron/kura-emulator
 
 Access the Kura Web-UI: 127.0.0.1:8080
 
-## Step 3 : Prepare a CDH Cluster (using Cloud-Cat)
+## Step 3 : Setup the "northbound data flow"
+### 3.1 Configure "CloudService" in Kura 
 
-## Step 4 : Setup the "northbound data flow"
-### 4.1 Configure "CloudService" in Kura 
+### 3.2 Configure Kapua-Kafka-Bridge
 
-### 4.2 Configure Kapua-Kafka-Bridge
+### 3.3 Create data ingestion pipeline to CDH
 
-### 4.3 Create data ingestion pipeline to CDH
-
-## Step 5 : Simulate a Sensor on Kura
+## Step 4 : Simulate a Sensor on Kura
 
 ```
 
