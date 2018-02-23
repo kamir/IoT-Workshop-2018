@@ -56,21 +56,21 @@ docker run -td --name kapua-elasticsearch -p 9200:9200 -p 9300:9300 elasticsearc
 
 docker run -td --name kapua-broker --link kapua-sql:db --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 1883:1883 -p 61614:61614 kapua/kapua-broker:0.3.2
 
-docker run -td --name kapua-console --link kapua-sql:db --link kapua-broker:broker --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 8080:8080 kapua/kapua-console:0.3.2
+docker run -td --name kapua-console --link kapua-sql:db --link kapua-broker:broker --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 8082:8080 kapua/kapua-console:0.3.2
 
 docker run -td --name kapua-api --link kapua-sql:db --link kapua-broker:broker --link kapua-elasticsearch:es --env commons.db.schema.update=true -p 8081:8080 kapua/kapua-api:0.3.2
 ```
 
-Access the Kapua Web-UI: 127.0.0.1:8081
+Access the Kapua Web-UI: http://127.0.0.1:8082
 
 ## Step 2 : Prepare a Kura Instance (in Docker)
 The dockerized Kura setup is available here: https://github.com/ctron/kura-emulator
 
 ```
-docker run -ti -p 8080:8080 ctron/kura-emulator
+docker run -ti -p 8083:8080 ctron/kura-emulator
 ```
 
-Access the Kura Web-UI: 127.0.0.1:8080
+Access the Kura Web-UI: http://127.0.0.1:8083
 
 ## Step 3 : Setup the "northbound data flow"
 ### 3.1 Configure "CloudService" in Kura 
