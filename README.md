@@ -86,6 +86,78 @@ Access the Kura Web-UI: http://YOUR_KURA_HOST:8083
 
 ### 3.3 Create data ingestion pipeline to CDH
 
+#### 3.3.1 Create Metrics View for Impala Table for HUE and Tableau 
+``` 
+CREATE VIEW IF NOT EXISTS iiot.telemetry_view as
+SELECT
+spine.millis
+,spine.date_value
+,spine.datetime_value
+,spine.id
+,cast(t1.value as int) as 'acceleration_x'
+,cast(t2.value as int) as 'acceleration_y'
+,cast(t3.value as int) as 'acceleration_z'
+,cast(t4.value as int) as 'gyro_x'
+,cast(t5.value as int) as 'gyro_y'
+,cast(t6.value as int) as 'gyro_z'
+,cast(t7.value as int) as 'mag_x'
+,cast(t8.value as int) as 'mag_y'
+,cast(t9.value as int) as 'mag_z'
+,cast(t10.value as int) as 'temperature'
+,cast(t11.value as int) as 'humidity'
+,cast(t12.value as int) as 'pressure'
+,cast(t13.value as int) as 'light'
+FROM
+(SELECT DISTINCT
+millis
+,from_unixtime((millis DIV 1000), 'yyyy/MM/dd') as date_value
+,from_unixtime((millis DIV 1000)) as datetime_value
+,id
+FROM iiot.telemetry
+WHERE (millis DIV 1000) BETWEEN (unix_timestamp(now())-300) and unix_timestamp(now())) as spine
+left outer join iiot.telemetry t1 on (spine.millis = t1.millis and
+spine.id = t1.id)
+left outer join iiot.telemetry t2 on (spine.millis = t2.millis and
+spine.id = t2.id)
+left outer join iiot.telemetry t3 on (spine.millis = t3.millis and
+spine.id = t3.id)
+left outer join iiot.telemetry t4 on (spine.millis = t4.millis and
+spine.id = t4.id)
+left outer join iiot.telemetry t5 on (spine.millis = t5.millis and
+spine.id = t5.id)
+left outer join iiot.telemetry t6 on (spine.millis = t6.millis and
+spine.id = t6.id)
+left outer join iiot.telemetry t7 on (spine.millis = t7.millis and
+spine.id = t7.id)
+left outer join iiot.telemetry t8 on (spine.millis = t8.millis and
+spine.id = t8.id)
+left outer join iiot.telemetry t9 on (spine.millis = t9.millis and
+spine.id = t9.id)
+left outer join iiot.telemetry t10 on (spine.millis = t10.millis and
+spine.id = t10.id)
+left outer join iiot.telemetry t11 on (spine.millis = t11.millis and
+spine.id = t11.id)
+left outer join iiot.telemetry t12 on (spine.millis = t12.millis and
+spine.id = t12.id)
+left outer join iiot.telemetry t13 on (spine.millis = t13.millis and
+spine.id = t13.id)
+WHERE
+t1.metric = 'acc_x'
+and t2.metric = 'acc_y'
+and t3.metric = 'acc_z'
+and t4.metric = 'gyro_x'
+and t5.metric = 'gyro_y'
+and t6.metric = 'gyro_z'
+and t7.metric = 'mag_x'
+and t8.metric = 'mag_y'
+and t9.metric = 'mag_z'
+and t10.metric = 'temperature'
+and t11.metric = 'humidity'
+and t12.metric = 'pressure'
+and t13.metric = 'light'
+ORDER BY millis desc
+--limit 100;
+```
 ## Step 4 : Connect or Simulate a Sensor on Kura
 
 ```
