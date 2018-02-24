@@ -158,12 +158,27 @@ and t13.metric = 'light'
 ORDER BY millis desc
 --limit 100;
 ```
-## Step 4 : Connect or Simulate a Sensor on Kura
+## Step 4 : Measure the Temperature using the Raspberry PI
+
+### 4.1 Read the Sensor data using Python
 
 ```
 
  
 ``` 
+### 4.2 Simulate the temperature and send values to KAPUA
+
+```
+
+ 
+``` 
+### 4.3 Send the temperature values to KURA
+
+```
+
+ 
+``` 
+
 
 
 
